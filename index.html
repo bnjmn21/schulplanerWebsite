@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Schulplaner</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Knewave&family=Lexend:wght@100..900&display=swap"
+        rel="stylesheet">
+    <link rel="prefetch" href="./dls/logo/black-logo.png">
+    <link rel="prefetch" href="./dls/logo/blue-logo.png">
+    <link rel="prefetch" href="./dls/logo/white-logo.png">
+</head>
+
+<body>
+    <h1>SCHULPLANER 2025/2026</h1>
+    <section>
+        <h2>Anforderungen</h2>
+        <div class="section-content">
+            <ul>
+                <li>Digital oder von Hand gemalt</li>
+                <li>Kreativ und mit Bezug zum NGB</li>
+                <li>Format: A5, Hochformat</li>
+                <li>Bei digitalen Bildern: mindestens 300dpi (1.825 × 2.551 Pixel)</li>
+                <li>Sollte Titel (Schulplaner 2025/2026), Namensfeld und Schullogo enthalten</li>
+            </ul>
+            <hr>
+            <p>
+                <strong>Achtung</strong>: Bei der Herstellung werden an jeder Seite 3mm abgeschnitten
+                und die Spiralbindung kommt an der linker Seite ins Bild,
+                deshalb sollte Text nicht zu weit außen sein.
+                (Siehe Vorlage)
+            </p>
+        </div>
+    </section>
+    <section>
+        <h2>Abgabe</h2>
+        <div class="section-content">
+            <p>
+                Abgabe bis zum <strong>7.3.2025</strong>:<br>
+                Name und Klasse nicht vergessen!<br><br>
+                Abgabe möglich per:
+            </p>
+            <ul>
+                <li>Postfach im Sekretariat</li>
+                <li>E-Mail an <a
+                        href="mailto:foerderverein@neues-gymnasium-bochum">foerderverein@neues-gymnasium-bochum</a></li>
+            </ul>
+        </div>
+    </section>
+    <section>
+        <h2>Downloads & Anhänge</h2>
+        <div class="section-content">
+            <h3>Vorlage</h3>
+            <p>
+            <div id="vorlage-dl-container"><a href="./dls/vorlage.png" download="Schulplaner Vorlage">Vorlage
+                    herunterladen</a></div>
+            Die Vorlage enthält Markierungen für die Spiralbindung und den Rand,
+            und hat bereits die richtigen Maße, damit deine Abgabe perfekt wird.
+            <br>
+            Wenn du digital arbeitest, kannst du die Vorlage herunterladen,
+            in deinem Malprogramm öffnen, auf einer neuen Ebene drüber malen,
+            und jederzeit überprüfen, ob alles passt.
+            </p>
+            <h3>Schullogo</h3>
+            <p>
+                Hier kannst du dier das Schullogo in verschiedenen Farben herunterladen.
+                <br><br>
+                Schullogo in
+                <select id="schullogo-dl-color">
+                    <option value="blue">Blau</option>
+                    <option value="white">Weiß</option>
+                    <option value="black">Schwarz</option>
+                </select>
+                :
+            </p>
+            <div id="schullogo-dl">
+                <div id="schullogo-prev-container"></div>
+                <div id="schullogo-dl-btns">
+                    <span>Download als</span>
+                    <a href="dls/logo/blue-logo.png" id="schullogo-dl-png" download="NGB Logo Blau">.png</a>
+                    <a href="dls/logo/blue-logo.svg" id="schullogo-dl-svg" download="NGB Logo Blau">.svg</a>
+                    <button id="schullogo-dl-help-open">?</button>
+                </div>
+                <dialog id="schullogo-dl-help">
+                    <p>
+                        Das Schullogo kannst du als PNG oder SVG-Datei herunterladen.
+                        In den meisten Fällen solltest du PNG auswählen da es von
+                        praktisch allen Malprogrammen unterstützt wird. SVG-Dateien
+                        haben in manchen Fällen Vorteile gegenüber PNG, deshalb wird
+                        die Option auch angeboten.
+                    </p>
+                    <div id="schullogo-dl-help-close-container">
+                        <button id="schullogo-dl-help-close">Schließen</button>
+                    </div>
+                </dialog>
+            </div>
+        </div>
+    </section>
+    <script>
+        const slHelpOpen = document.getElementById("schullogo-dl-help-open");
+        const slHelpClose = document.getElementById("schullogo-dl-help-close");
+        const slHelpDialog = document.getElementById("schullogo-dl-help");
+        const slColor = document.getElementById("schullogo-dl-color");
+        const slPrevContainer = document.getElementById("schullogo-prev-container");
+        const slDlPng = document.getElementById("schullogo-dl-png");
+        const slDlSvg = document.getElementById("schullogo-dl-svg");
+
+        slHelpOpen.addEventListener("click", () => {
+            slHelpDialog.showModal();
+        });
+        slHelpClose.addEventListener("click", () => {
+            slHelpDialog.close();
+        });
+
+        const lsPrev = document.createElement("img");
+        lsPrev.src = `./dls/logo/${slColor.value}-logo.svg`;
+        lsPrev.alt = "Schullogo";
+        slPrevContainer.appendChild(lsPrev);
+
+        slDlPng.href = `./dls/logo/${slColor.value}-logo.png`;
+        slDlPng.download = `NGB Logo ${{ blue: "Blau", white: "Weiß", black: "Schwarz" }[slColor.value]}`;
+        slDlSvg.href = `./dls/logo/${slColor.value}-logo.svg`;
+        slDlPng.download = `NGB Logo ${{ blue: "Blau", white: "Weiß", black: "Schwarz" }[slColor.value]}`;
+
+        slColor.addEventListener("input", () => {
+            lsPrev.src = `./dls/logo/${slColor.value}-logo.svg`;
+            lsPrev.alt = "Schullogo";
+
+            slDlPng.href = `./dls/logo/${slColor.value}-logo.png`;
+            slDlPng.download = `NGB Logo ${{ blue: "Blau", white: "Weiß", black: "Schwarz" }[slColor.value]}`;
+            slDlSvg.href = `./dls/logo/${slColor.value}-logo.svg`;
+            slDlPng.download = `NGB Logo ${{ blue: "Blau", white: "Weiß", black: "Schwarz" }[slColor.value]}`;
+        });
+
+    </script>
+    <div id="bg-filler"></div>
+</body>
+
+</html>
