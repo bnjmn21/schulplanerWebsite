@@ -126,7 +126,7 @@
         slDlPng.href = `./dls/logo/${slColor.value}-logo.png`;
         slDlPng.download = `NGB Logo ${{ blue: "Blau", white: "Weiß", black: "Schwarz" }[slColor.value]}`;
         slDlSvg.href = `./dls/logo/${slColor.value}-logo.svg`;
-        slDlPng.download = `NGB Logo ${{ blue: "Blau", white: "Weiß", black: "Schwarz" }[slColor.value]}`;
+        slDlSvg.download = `NGB Logo ${{ blue: "Blau", white: "Weiß", black: "Schwarz" }[slColor.value]}`;
 
         slColor.addEventListener("input", () => {
             lsPrev.src = `./dls/logo/${slColor.value}-logo.svg`;
